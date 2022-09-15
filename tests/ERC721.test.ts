@@ -12,7 +12,7 @@ describe("ERC721DrunkRobotsGenesisZero", async function () {
   const BASE_URI = "http://dummy.url/";
   const ZERO_TOKEN_URI = `${BASE_URI}0.json`;
 
-  const NAME = "Drunk Robots Gennesis Zero";
+  const NAME = "Drunk Robots Genesis Zero";
   const SYMBOL = "DR0";
   const MAX_SUPPLY = 50;
 
@@ -170,6 +170,20 @@ describe("ERC721DrunkRobotsGenesisZero", async function () {
     });
     it("balace of caller should be equal to max supply", async () => {
       expect(await nft.balanceOf(deployer.address)).to.eq(MAX_SUPPLY);
+    });
+  });
+
+  /***** test case 7 ******/
+  describe("deploy contract, transfer ownership", () => {
+    it("update the owner", async () => {
+      await nft.transferOwnership(accountX.address);
+      expect(await nft.owner()).to.eq(accountX.address);
+    });
+
+    it("should enable new owner to mint", async () => {
+      const volume = 10;
+      await nft.mint(accountX.address, 10);
+      expect(await nft.balanceOf(accountX.address)).to.eq(volume);
     });
   });
 });
