@@ -117,7 +117,7 @@ contract ERC721DrunkRobotsGenesisZero is ERC721AQueryable, Ownable, IERC2981 {
     }
 
     constructor(string memory _uri)
-        ERC721A("Drunk Robots Gennesis Zero", "DR0")
+        ERC721A("Drunk Robots Genesis Zero", "DR0")
     {
         baseURI = _uri;
         royaltiesReceiver = msg.sender;
